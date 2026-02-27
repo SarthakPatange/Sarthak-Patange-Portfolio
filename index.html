@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="Sarthak Patange — Motorsport & Vehicle Dynamics Engineer"/>
+  <title>Sarthak Patange</title>
+
+  <!-- Fonts: SF Pro Display equivalent -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+  <!-- Three.js for 3D CAD viewer -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<!-- ======================================================
+     NAVIGATION — Apple-style top nav
+     ====================================================== -->
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#hero">SP</a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#intro">About</a></li>
+      <li><a href="#projects">Work</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#files">Files</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile dropdown -->
+  <div class="nav-mobile-menu" id="navMobileMenu" aria-hidden="true">
+    <a href="#intro" class="nav-mobile-link">About</a>
+    <a href="#projects" class="nav-mobile-link">Work</a>
+    <a href="#experience" class="nav-mobile-link">Experience</a>
+    <a href="#skills" class="nav-mobile-link">Skills</a>
+    <a href="#files" class="nav-mobile-link">Files</a>
+    <a href="#contact" class="nav-mobile-link">Contact</a>
+  </div>
+</nav>
+
+<!-- ======================================================
+     HERO — Full-viewport, Apple-style
+     ====================================================== -->
+<section id="hero" class="hero-section">
+  <div class="hero-bg-video-wrap">
+    <!-- REPLACE: Add your hero background video here -->
+    <!-- <video autoplay muted loop playsinline src="assets/videos/hero-bg.mp4"></video> -->
+    <div class="hero-bg-gradient"></div>
+    <div class="hero-bg-grid"></div>
+  </div>
+
+  <div class="hero-content">
+    <!-- Self-intro tile (first part — short punchy) -->
+    <div class="hero-eyebrow reveal-up" style="--delay:0s">
+      Motorsport Engineer · SAE Baja Captain · Vehicle Dynamics
+    </div>
+
+    <h1 class="hero-name reveal-up" style="--delay:.1s">
+      Sarthak<br/>Patange
+    </h1>
+
+    <p class="hero-subtitle reveal-up" style="--delay:.22s">
+      Building machines that move at the edge of physics.
+    </p>
+
+    <div class="hero-cta-row reveal-up" style="--delay:.34s">
+      <a href="#projects" class="btn-apple-primary">See My Work</a>
+      <a href="#intro" class="btn-apple-text">Learn More ↓</a>
+    </div>
+
+    <!-- Profile photo -->
+    <div class="hero-photo-ring reveal-up" style="--delay:.46s">
+      <!-- REPLACE: swap src with your actual photo path -->
+      <img
+        id="heroPhoto"
+        src="assets/images/profile.jpg"
+        onerror="this.src='https://placehold.co/220x220/1d1d1f/86868b?text=SP'"
+        alt="Sarthak Patange"
+        class="hero-photo"
+      />
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ======================================================
+     INTRO — Two-tile Apple detail layout
+     ====================================================== -->
+<section id="intro" class="section intro-section">
+  <div class="container">
+    <div class="section-label">About</div>
+
+    <div class="intro-tiles">
+
+      <!-- TILE 1 — Short self-intro (like Apple's headline tile) -->
+      <div class="intro-tile intro-tile--headline reveal-up">
+        <div class="tile-inner">
+          <h2 class="tile-headline">
+            Engineering<br/>
+            <span class="text-gradient">precision</span><br/>
+            into motion.
+          </h2>
+          <p class="tile-body">
+            I'm a Mechanical and Motorsport Engineer obsessed with making vehicles faster, safer, and smarter. SAE Baja Captain. Suspension & Steering Lead. Vehicle Dynamics specialist.
+          </p>
+          <a href="#projects" class="btn-apple-link">Explore Projects →</a>
+        </div>
+      </div>
+
+      <!-- TILE 2 — Detailed info -->
+      <div class="intro-tile intro-tile--detail reveal-up" style="--delay:.12s">
+        <div class="tile-inner">
+          <div class="detail-photo-wrap">
+            <!-- REPLACE: swap src with your full photo -->
+            <img
+              src="assets/images/profile-detail.jpg"
+              onerror="this.src='https://placehold.co/380x440/f5f5f7/1d1d1f?text=Photo'"
+              alt="Sarthak Patange"
+              class="detail-photo"
+            />
+          </div>
+          <div class="detail-info">
+            <h3>Sarthak Patange</h3>
+            <p class="detail-title">B.E. Mechanical Engineering<br/>SAE Baja Captain | Class of 2025</p>
+            <div class="detail-bio">
+              <p>My engineering journey started with a single question: <em>"Why does this car handle the way it does?"</em> That curiosity turned into four years of suspension tuning, FEA validation, lap-time simulation, and competition racing.</p>
+              <p>As Captain of the SAE Baja team, I led 30+ engineers through the complete vehicle development lifecycle — from concept sketches to podium finishes.</p>
+            </div>
+            <div class="detail-meta-grid">
+              <div class="meta-item">
+                <span class="meta-num">30+</span>
+                <span class="meta-label">Engineers Led</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-num">12+</span>
+                <span class="meta-label">Projects</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-num">4</span>
+                <span class="meta-label">Competition Seasons</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-num">Top 10%</span>
+                <span class="meta-label">National Rank</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     PROJECTS — Apple product-grid style
+     ====================================================== -->
+<section id="projects" class="section projects-section">
+  <div class="container">
+    <div class="section-label">Work</div>
+    <h2 class="section-title reveal-up">Selected Projects</h2>
+    <p class="section-sub reveal-up">Click any project to expand full details, media, and files.</p>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- PROJECT CARD 1 — FEATURED large -->
+    <article class="project-card project-card--featured" data-project="baja" tabindex="0">
+      <div class="project-media">
+        <!-- REPLACE: Add your project image/video here -->
+        <img
+          src="assets/images/project-baja.jpg"
+          onerror="this.src='https://placehold.co/1200x680/1d1d1f/0066cc?text=SAE+Baja+2024'"
+          alt="SAE Baja 2024"
+          class="project-img"
+        />
+        <div class="project-video-badge" style="display:none">
+          <!-- Visible if video present -->
+          <span>▶ Watch Build Video</span>
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="tag">Motorsport</span>
+          <span class="tag">Leadership</span>
+          <span class="tag">Systems</span>
+        </div>
+        <h3 class="project-title">SAE Baja 2024 — Full Vehicle</h3>
+        <p class="project-desc">Led 30-person team through complete vehicle design, manufacturing, and competition. From CAD to chequered flag.</p>
+        <span class="project-cta">Expand Case Study →</span>
+      </div>
+
+      <!-- EXPANDED DETAIL PANEL -->
+      <div class="project-expand" role="region" aria-hidden="true">
+        <button class="expand-close" aria-label="Close">✕</button>
+        <div class="expand-inner">
+          <div class="expand-gallery" id="baja-gallery">
+            <!-- REPLACE: Add your images/videos in this gallery -->
+            <div class="gallery-main">
+              <img src="assets/images/project-baja.jpg"
+                onerror="this.src='https://placehold.co/900x500/1d1d1f/0066cc?text=Main+Image'"
+                alt="Baja Vehicle" id="baja-gallery-main"/>
+            </div>
+            <div class="gallery-thumbs" id="baja-thumbs">
+              <!-- Add extra images: <img src="..." onclick="setMain(this, 'baja-gallery-main')"> -->
+              <div class="gallery-add-hint">
+                📸 Add more images to <code>assets/images/</code>
+              </div>
+            </div>
+          </div>
+          <div class="expand-content">
+            <h2>SAE Baja 2024</h2>
+            <p class="expand-sub">Full Vehicle Design & Competition</p>
+            <div class="expand-body">
+              <p>As team captain, I oversaw the entire design lifecycle of the 2024 Baja SAE entry. This included structural analysis of the chassis, suspension geometry optimisation, drivetrain packaging, and driver ergonomics.</p>
+              <h4>Key Contributions</h4>
+              <ul>
+                <li>Led cross-functional team of 30 engineers across 6 sub-systems</li>
+                <li>Designed and FEA-validated chassis with 40% weight reduction over previous iteration</li>
+                <li>Implemented new double-wishbone geometry achieving 22% better lateral stability</li>
+                <li>Managed $15,000 budget and manufacturing timeline</li>
+              </ul>
+              <h4>Results</h4>
+              <ul>
+                <li>🏆 1st Place — Suspension Design Award (Regional)</li>
+                <li>Top 10% National Overall</li>
+                <li>Best Engineering Design Report</li>
+              </ul>
+            </div>
+            <!-- Video embed slot -->
+            <div class="expand-video-slot">
+              <!-- REPLACE: Embed your YouTube/Vimeo or local video here -->
+              <!-- <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe> -->
+              <!-- OR: <video src="assets/videos/baja-build.mp4" controls></video> -->
+              <div class="video-placeholder">
+                <div class="vp-icon">▶</div>
+                <p>Add your build video here.<br/>See <code>index.html</code> → project expand → video-slot</p>
+              </div>
+            </div>
+            <!-- Files attached to this project -->
+            <div class="expand-files">
+              <h4>Project Files</h4>
+              <div class="file-chips">
+                <!-- REPLACE: Link actual files -->
+                <a href="assets/reports/baja-2024-report.pdf" class="file-chip" target="_blank">
+                  <span class="fc-icon">📄</span>
+                  <span class="fc-name">Design Report.pdf</span>
+                  <span class="fc-size">—</span>
+                </a>
+                <a href="assets/cad/baja-2024.step" class="file-chip" target="_blank">
+                  <span class="fc-icon">📐</span>
+                  <span class="fc-name">CAD Model.step</span>
+                  <span class="fc-size">—</span>
+                </a>
+                <a href="assets/certificates/baja-award.pdf" class="file-chip" target="_blank">
+                  <span class="fc-icon">🏅</span>
+                  <span class="fc-name">Award Certificate</span>
+                  <span class="fc-size">—</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- PROJECT CARD 2 -->
+    <article class="project-card" data-project="suspension" tabindex="0">
+      <div class="project-media">
+        <img
+          src="assets/images/project-suspension.jpg"
+          onerror="this.src='https://placehold.co/700x420/f5f5f7/1d1d1f?text=Suspension+Design'"
+          alt="Suspension System"
+          class="project-img"
+        />
+      </div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="tag">FEA</span>
+          <span class="tag">Dynamics</span>
+          <span class="tag">CAD</span>
+        </div>
+        <h3 class="project-title">Double-Wishbone Suspension</h3>
+        <p class="project-desc">Optimised geometry for cornering. FEA validated to 8G impact loads. 22% lateral stability improvement.</p>
+        <span class="project-cta">Expand →</span>
+      </div>
+      <div class="project-expand" role="region" aria-hidden="true">
+        <button class="expand-close" aria-label="Close">✕</button>
+        <div class="expand-inner">
+          <div class="expand-gallery">
+            <div class="gallery-main">
+              <img src="assets/images/project-suspension.jpg"
+                onerror="this.src='https://placehold.co/900x500/f5f5f7/1d1d1f?text=Suspension'" alt="Suspension"/>
+            </div>
+          </div>
+          <div class="expand-content">
+            <h2>Double-Wishbone Suspension Design</h2>
+            <p class="expand-sub">Kinematics, FEA & Validation</p>
+            <div class="expand-body">
+              <p>Complete front and rear suspension system design including geometry optimisation, spring-damper selection, and structural validation.</p>
+              <h4>Technical Details</h4>
+              <ul>
+                <li>Optimised caster, camber, toe curves via ADAMS simulation</li>
+                <li>Anti-roll bar stiffness tuned to reduce body roll by 35%</li>
+                <li>All uprights and A-arms FEA validated in Ansys Mechanical</li>
+                <li>Designed for 8G bump load with 1.5× safety factor</li>
+              </ul>
+            </div>
+            <!-- 3D CAD VIEWER SLOT -->
+            <div class="cad-viewer-slot">
+              <h4>3D Model Viewer</h4>
+              <div id="cad-viewer-suspension" class="cad-viewport">
+                <div class="cad-placeholder">
+                  <div class="cad-icon">🔩</div>
+                  <p>Drop a <code>.obj</code> or <code>.stl</code> file here<br/>or load from <code>assets/cad/</code></p>
+                  <label class="btn-apple-sm">
+                    Load Model
+                    <input type="file" accept=".obj,.stl,.glb,.gltf" class="cad-file-input" data-viewer="cad-viewer-suspension" style="display:none"/>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <!-- Ansys result images -->
+            <div class="ansys-results">
+              <h4>Ansys FEA Results</h4>
+              <div class="ansys-grid">
+                <!-- REPLACE: Add your Ansys screenshot images -->
+                <div class="ansys-img-slot">
+                  <img src="assets/images/ansys-suspension-stress.png"
+                    onerror="this.src='https://placehold.co/400x280/fff3cd/856404?text=Stress+Contour'"
+                    alt="Stress analysis"/>
+                  <span>Von Mises Stress</span>
+                </div>
+                <div class="ansys-img-slot">
+                  <img src="assets/images/ansys-suspension-deform.png"
+                    onerror="this.src='https://placehold.co/400x280/d1ecf1/0c5460?text=Deformation'"
+                    alt="Deformation"/>
+                  <span>Total Deformation</span>
+                </div>
+              </div>
+            </div>
+            <div class="expand-files">
+              <h4>Project Files</h4>
+              <div class="file-chips">
+                <a href="assets/reports/suspension-report.pdf" class="file-chip" target="_blank">
+                  <span class="fc-icon">📄</span>
+                  <span class="fc-name">Technical Report.pdf</span>
+                  <span class="fc-size">—</span>
+                </a>
+                <a href="assets/cad/suspension.step" class="file-chip" target="_blank">
+                  <span class="fc-icon">📐</span>
+                  <span class="fc-name">CAD Files.step</span>
+                  <span class="fc-size">—</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- PROJECT CARD 3 -->
+    <article class="project-card" data-project="laptim" tabindex="0">
+      <div class="project-media">
+        <img
+          src="assets/images/project-laptim.jpg"
+          onerror="this.src='https://placehold.co/700x420/1d1d1f/30d158?text=Lap+Time+Sim'"
+          alt="Lap Time Simulation"
+          class="project-img"
+        />
+      </div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">MATLAB</span>
+          <span class="tag">Simulation</span>
+        </div>
+        <h3 class="project-title">Lap-Time Simulation Tool</h3>
+        <p class="project-desc">Custom Python/MATLAB tool for gear ratio and aero optimisation. Validated against competition telemetry.</p>
+        <span class="project-cta">Expand →</span>
+      </div>
+      <div class="project-expand" role="region" aria-hidden="true">
+        <button class="expand-close" aria-label="Close">✕</button>
+        <div class="expand-inner">
+          <div class="expand-gallery">
+            <div class="gallery-main">
+              <img src="assets/images/project-laptim.jpg"
+                onerror="this.src='https://placehold.co/900x500/1d1d1f/30d158?text=Lap+Sim'" alt="Lap Sim"/>
+            </div>
+          </div>
+          <div class="expand-content">
+            <h2>Lap-Time Simulation Tool</h2>
+            <p class="expand-sub">Python & MATLAB Vehicle Dynamics Simulation</p>
+            <div class="expand-body">
+              <p>Built a full lap-time simulation from scratch in Python with a MATLAB validation layer. Used to optimise gear ratios, differential settings, and aero balance across multiple circuits.</p>
+              <h4>Features</h4>
+              <ul>
+                <li>Point-mass and bicycle model integration</li>
+                <li>Tyre model using Pacejka Magic Formula</li>
+                <li>Track map import from GPS data</li>
+                <li>Sensitivity analysis across 14 tuning parameters</li>
+              </ul>
+            </div>
+            <div class="expand-files">
+              <h4>Project Files</h4>
+              <div class="file-chips">
+                <a href="assets/reports/laptim-report.pdf" class="file-chip" target="_blank">
+                  <span class="fc-icon">📄</span><span class="fc-name">Report.pdf</span><span class="fc-size">—</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- PROJECT CARD 4 -->
+    <article class="project-card" data-project="steering" tabindex="0">
+      <div class="project-media">
+        <img
+          src="assets/images/project-steering.jpg"
+          onerror="this.src='https://placehold.co/700x420/f5f5f7/1d1d1f?text=Steering+System'"
+          alt="Steering System"
+          class="project-img"
+        />
+      </div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="tag">Design</span>
+          <span class="tag">Kinematics</span>
+        </div>
+        <h3 class="project-title">Rack-and-Pinion Steering</h3>
+        <p class="project-desc">Redesigned to reduce bump steer. 15% driver feedback score improvement. Custom Ackermann geometry.</p>
+        <span class="project-cta">Expand →</span>
+      </div>
+      <div class="project-expand" role="region" aria-hidden="true">
+        <button class="expand-close" aria-label="Close">✕</button>
+        <div class="expand-inner">
+          <div class="expand-content">
+            <h2>Rack-and-Pinion Steering Optimisation</h2>
+            <p class="expand-sub">Geometry, Bump Steer & Driver Feedback</p>
+            <div class="expand-body">
+              <p>Full redesign of the steering system focusing on bump steer elimination and on-center feel improvement.</p>
+            </div>
+            <div class="expand-files">
+              <h4>Files</h4>
+              <div class="file-chips">
+                <a href="assets/reports/steering-report.pdf" class="file-chip" target="_blank">
+                  <span class="fc-icon">📄</span><span class="fc-name">Report.pdf</span><span class="fc-size">—</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /projects-grid -->
+</section>
+
+<!-- ======================================================
+     EXPERIENCE — Timeline
+     ====================================================== -->
+<section id="experience" class="section experience-section">
+  <div class="container">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title reveal-up">Career Timeline</h2>
+
+    <div class="timeline">
+
+      <div class="timeline-item reveal-left">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2023 — 2024</div>
+        <div class="tl-card">
+          <div class="tl-role">SAE Baja Captain</div>
+          <div class="tl-org">University SAE Team</div>
+          <p class="tl-desc">Led 30+ engineers through the full vehicle development cycle. Managed budget, schedule, and multi-system integration.</p>
+          <div class="tl-tags">
+            <span>Leadership</span><span>Systems Engineering</span><span>Budget Management</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal-left" style="--delay:.1s">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2022 — 2023</div>
+        <div class="tl-card">
+          <div class="tl-role">Suspension & Steering Lead</div>
+          <div class="tl-org">University SAE Team</div>
+          <p class="tl-desc">Designed and validated the complete suspension package. Anti-roll bar concept improved lateral stability by 22%.</p>
+          <div class="tl-tags">
+            <span>FEA</span><span>ADAMS</span><span>SolidWorks</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal-left" style="--delay:.2s">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Summer 2022</div>
+        <div class="tl-card">
+          <div class="tl-role">Vehicle Dynamics Engineering Intern</div>
+          <div class="tl-org">Automotive OEM</div>
+          <p class="tl-desc">Simulation setup and data acquisition processing. Correlation of ADAMS model with physical test data.</p>
+          <div class="tl-tags">
+            <span>ADAMS</span><span>Data Acquisition</span><span>Correlation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal-left" style="--delay:.3s">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2021 — 2022</div>
+        <div class="tl-card">
+          <div class="tl-role">Chassis Sub-Team Member</div>
+          <div class="tl-org">University SAE Team</div>
+          <p class="tl-desc">Chassis FEA, weld inspection, TIG welding, and CMM measurement experience.</p>
+          <div class="tl-tags">
+            <span>Ansys</span><span>TIG Welding</span><span>CMM</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     SKILLS — Apple-style categories
+     ====================================================== -->
+<section id="skills" class="section skills-section">
+  <div class="container">
+    <div class="section-label">Expertise</div>
+    <h2 class="section-title reveal-up">Technical Skills</h2>
+
+    <div class="skills-masonry">
+
+      <div class="skill-group reveal-up">
+        <div class="sg-icon">⬡</div>
+        <h3>Vehicle Dynamics</h3>
+        <ul class="skill-bars">
+          <li data-pct="92"><span>Suspension Kinematics</span><div class="bar"><div class="bar-fill"></div></div></li>
+          <li data-pct="82"><span>Tyre Modelling</span><div class="bar"><div class="bar-fill"></div></div></li>
+          <li data-pct="76"><span>Lap Time Simulation</span><div class="bar"><div class="bar-fill"></div></div></li>
+          <li data-pct="70"><span>ADAMS / CarSim</span><div class="bar"><div class="bar-fill"></div></div></li>
+        </ul>
+      </div>
+
+      <div class="skill-group reveal-up" style="--delay:.08s">
+        <div class="sg-icon">◈</div>
+        <h3>CAD & Simulation</h3>
+        <ul class="skill-bars">
+          <li data-pct="95"><span>SolidWorks</span><div class="bar"><div class="bar-fill"></div></div></li>
+          <li data-pct="82"><span>Ansys FEA</span><div class="bar"><div class="bar-fill"></div></div></li>
+          <li data-pct="78"><span>CATIA V5</span><div class="bar"><div class="bar-fill"></div></div></li>
+          <li data-pct="88"><span>GD&T</span><div class="bar"><div class="bar-fill"></div></div></li>
+        </ul>
+      </div>
+
+      <div class="skill-group reveal-up" style="--delay:.16s">
+        <div class="sg-icon">{ }</div>
+        <h3>Programming</h3>
+        <ul class="skill-bars">
+          <li data-pct="85"><span>MATLAB</span><div class="bar"><div class="bar-fill"></div></div></li>
+          <li data-pct="78"><span>Python</span><div class="bar"><div class="bar-fill"></div></div></li>
+          <li data-pct="60"><span>C++</span><div class="bar"><div class="bar-fill"></div></div></li>
+          <li data-pct="72"><span>Excel VBA</span><div class="bar"><div class="bar-fill"></div></div></li>
+        </ul>
+      </div>
+
+      <div class="skill-group reveal-up" style="--delay:.24s">
+        <div class="sg-icon">⊕</div>
+        <h3>Engineering Tools</h3>
+        <ul class="skill-bars">
+          <li data-pct="80"><span>MathCAD</span><div class="bar"><div class="bar-fill"></div></div></li>
+          <li data-pct="75"><span>Data Acquisition</span><div class="bar"><div class="bar-fill"></div></div></li>
+          <li data-pct="90"><span>Project Management</span><div class="bar"><div class="bar-fill"></div></div></li>
+          <li data-pct="85"><span>Technical Writing</span><div class="bar"><div class="bar-fill"></div></div></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     FILES — Certificates, Reports, CAD
+     ====================================================== -->
+<section id="files" class="section files-section">
+  <div class="container">
+    <div class="section-label">Downloads</div>
+    <h2 class="section-title reveal-up">Certificates &amp; Reports</h2>
+    <p class="section-sub reveal-up">All files available for download or in-browser preview.</p>
+
+    <div class="files-tabs">
+      <button class="ftab active" data-target="ftab-certs">Certificates</button>
+      <button class="ftab" data-target="ftab-reports">Reports</button>
+      <button class="ftab" data-target="ftab-cad">CAD Models</button>
+    </div>
+
+    <!-- Certificates -->
+    <div class="ftab-content active" id="ftab-certs">
+      <div class="file-cards-grid">
+        <!-- REPLACE: Link your actual certificate files -->
+        <div class="file-card reveal-up" onclick="openFilePreview('assets/certificates/sae-award.pdf','SAE Award Certificate')">
+          <div class="fc-thumb">🏆</div>
+          <div class="fc-meta">
+            <div class="fc-title">SAE Baja — Suspension Award</div>
+            <div class="fc-detail">Regional Competition · 2024</div>
+          </div>
+          <div class="fc-actions">
+            <button class="btn-apple-sm">Preview</button>
+            <a href="assets/certificates/sae-award.pdf" download class="btn-apple-sm btn-outline">Download</a>
+          </div>
+        </div>
+
+        <div class="file-card reveal-up" style="--delay:.08s" onclick="openFilePreview('assets/certificates/deans-list.pdf','Deans List')">
+          <div class="fc-thumb">🎓</div>
+          <div class="fc-meta">
+            <div class="fc-title">Dean's Merit List</div>
+            <div class="fc-detail">University · 2021–2024</div>
+          </div>
+          <div class="fc-actions">
+            <button class="btn-apple-sm">Preview</button>
+            <a href="assets/certificates/deans-list.pdf" download class="btn-apple-sm btn-outline">Download</a>
+          </div>
+        </div>
+
+        <div class="file-card reveal-up" style="--delay:.16s" onclick="openFilePreview('assets/certificates/intern-cert.pdf','Internship Certificate')">
+          <div class="fc-thumb">📋</div>
+          <div class="fc-meta">
+            <div class="fc-title">Internship Certificate</div>
+            <div class="fc-detail">Vehicle Dynamics · Summer 2022</div>
+          </div>
+          <div class="fc-actions">
+            <button class="btn-apple-sm">Preview</button>
+            <a href="assets/certificates/intern-cert.pdf" download class="btn-apple-sm btn-outline">Download</a>
+          </div>
+        </div>
+
+        <div class="file-card reveal-up" style="--delay:.24s" onclick="openFilePreview('assets/certificates/solidworks-cert.pdf','SolidWorks Certification')">
+          <div class="fc-thumb">🔧</div>
+          <div class="fc-meta">
+            <div class="fc-title">SolidWorks CSWA Certification</div>
+            <div class="fc-detail">Dassault Systèmes · 2022</div>
+          </div>
+          <div class="fc-actions">
+            <button class="btn-apple-sm">Preview</button>
+            <a href="assets/certificates/solidworks-cert.pdf" download class="btn-apple-sm btn-outline">Download</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Reports -->
+    <div class="ftab-content" id="ftab-reports">
+      <div class="file-cards-grid">
+        <div class="file-card reveal-up" onclick="openFilePreview('assets/reports/baja-2024-report.pdf','Baja 2024 Design Report')">
+          <div class="fc-thumb">📄</div>
+          <div class="fc-meta">
+            <div class="fc-title">Baja 2024 Design Report</div>
+            <div class="fc-detail">Full vehicle documentation · 2024</div>
+          </div>
+          <div class="fc-actions">
+            <button class="btn-apple-sm">Preview</button>
+            <a href="assets/reports/baja-2024-report.pdf" download class="btn-apple-sm btn-outline">Download</a>
+          </div>
+        </div>
+
+        <div class="file-card reveal-up" style="--delay:.08s" onclick="openFilePreview('assets/reports/suspension-report.pdf','Suspension Technical Report')">
+          <div class="fc-thumb">📐</div>
+          <div class="fc-meta">
+            <div class="fc-title">Suspension Technical Report</div>
+            <div class="fc-detail">FEA & Kinematics · 2023</div>
+          </div>
+          <div class="fc-actions">
+            <button class="btn-apple-sm">Preview</button>
+            <a href="assets/reports/suspension-report.pdf" download class="btn-apple-sm btn-outline">Download</a>
+          </div>
+        </div>
+
+        <div class="file-card reveal-up" style="--delay:.16s" onclick="openFilePreview('assets/reports/laptim-report.pdf','Lap Simulation Report')">
+          <div class="fc-thumb">📊</div>
+          <div class="fc-meta">
+            <div class="fc-title">Lap-Time Simulation Report</div>
+            <div class="fc-detail">Python/MATLAB · 2023</div>
+          </div>
+          <div class="fc-actions">
+            <button class="btn-apple-sm">Preview</button>
+            <a href="assets/reports/laptim-report.pdf" download class="btn-apple-sm btn-outline">Download</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAD Models — 3D viewer -->
+    <div class="ftab-content" id="ftab-cad">
+      <div class="cad-viewer-main">
+        <div class="cad-header">
+          <h3>Interactive 3D Viewer</h3>
+          <p>Upload an <code>.obj</code>, <code>.stl</code>, or <code>.glb</code> file to view it in 3D.<br/>Or link a pre-loaded model from <code>assets/cad/</code>.</p>
+          <div class="cad-controls-top">
+            <label class="btn-apple-primary" style="cursor:pointer">
+              Load Model
+              <input type="file" accept=".obj,.stl,.glb,.gltf" id="cad-main-file-input" style="display:none"/>
+            </label>
+            <!-- Quick-load preset models -->
+            <button class="btn-apple-sm" onclick="loadCADModel('assets/cad/baja-vehicle.glb')">Baja Vehicle</button>
+            <button class="btn-apple-sm" onclick="loadCADModel('assets/cad/suspension.glb')">Suspension</button>
+          </div>
+        </div>
+        <div id="cad-viewer-main" class="cad-viewport cad-viewport--main">
+          <div class="cad-placeholder" id="cad-placeholder-main">
+            <div class="cad-icon">🔩</div>
+            <p>Load a 3D model to view it here.<br/>Supports OBJ, STL, GLB/GLTF</p>
+            <p style="font-size:12px;color:#86868b;margin-top:8px">Drag to rotate · Scroll to zoom · Right-click to pan</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================================================
+     ACHIEVEMENTS
+     ====================================================== -->
+<section id="achievements" class="section achievements-section">
+  <div class="container">
+    <div class="section-label">Recognition</div>
+    <h2 class="section-title reveal-up">Achievements</h2>
+    <div class="achievements-grid">
+
+      <div class="ach-card reveal-up">
+        <div class="ach-icon">🏆</div>
+        <div class="ach-rank">1st Place</div>
+        <h3>Best Suspension Design</h3>
+        <p>SAE Baja Regional Competition · 2024</p>
+      </div>
+
+      <div class="ach-card reveal-up" style="--delay:.08s">
+        <div class="ach-icon">🥇</div>
+        <div class="ach-rank">Top 10%</div>
+        <h3>National SAE Standing</h3>
+        <p>112 competing teams · 2024</p>
+      </div>
+
+      <div class="ach-card reveal-up" style="--delay:.16s">
+        <div class="ach-icon">📑</div>
+        <div class="ach-rank">Award</div>
+        <h3>Best Design Report</h3>
+        <p>Clarity & technical depth · 2023</p>
+      </div>
+
+      <div class="ach-card reveal-up" style="--delay:.24s">
+        <div class="ach-icon">🎓</div>
+        <div class="ach-rank">Top 5%</div>
+        <h3>Dean's Merit List</h3>
+        <p>Mechanical Engineering cohort · 2021–24</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     CONTACT
+     ====================================================== -->
+<section id="contact" class="section contact-section">
+  <div class="container">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title reveal-up">
+      Let's build<br/>
+      <span class="text-gradient">something fast.</span>
+    </h2>
+    <p class="section-sub reveal-up">Open to motorsport engineering roles, research collaborations, and vehicle dynamics projects.</p>
+
+    <div class="contact-cards reveal-up">
+
+      <a href="mailto:sarthak@example.com" class="contact-card">
+        <div class="cc-icon">✉</div>
+        <div class="cc-info">
+          <div class="cc-label">Email</div>
+          <!-- REPLACE: your email address -->
+          <div class="cc-value">sarthak@example.com</div>
+        </div>
+        <div class="cc-arrow">→</div>
+      </a>
+
+      <!-- REPLACE: your actual LinkedIn URL -->
+      <a href="https://linkedin.com/in/sarthakpatange" target="_blank" rel="noopener" class="contact-card">
+        <div class="cc-icon">in</div>
+        <div class="cc-info">
+          <div class="cc-label">LinkedIn</div>
+          <div class="cc-value">linkedin.com/in/sarthakpatange</div>
+        </div>
+        <div class="cc-arrow">→</div>
+      </a>
+
+      <!-- REPLACE: your actual GitHub URL -->
+      <a href="https://github.com/sarthakpatange" target="_blank" rel="noopener" class="contact-card">
+        <div class="cc-icon">◎</div>
+        <div class="cc-info">
+          <div class="cc-label">GitHub</div>
+          <div class="cc-value">github.com/sarthakpatange</div>
+        </div>
+        <div class="cc-arrow">→</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     FOOTER
+     ====================================================== -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-copy">
+      Copyright © 2024 Sarthak Patange. All rights reserved.
+    </div>
+    <div class="footer-links">
+      <a href="#hero">Top</a>
+      <a href="#projects">Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ======================================================
+     FILE PREVIEW MODAL
+     ====================================================== -->
+<div id="filePreviewModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal-backdrop" onclick="closeFilePreview()"></div>
+  <div class="modal-panel">
+    <div class="modal-header">
+      <span id="modalTitle" class="modal-title"></span>
+      <button class="modal-close" onclick="closeFilePreview()" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <iframe id="modalIframe" class="modal-iframe" src="" title="Document preview"></iframe>
+    </div>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
