@@ -1,0 +1,1842 @@
+/* ================================================
+   SARTHAK PATANGE — PORTFOLIO STYLESHEET
+   Premium Motorsport Engineering Portfolio
+   ================================================ */
+
+/* -------- DESIGN TOKENS -------- */
+:root {
+  --bg:           #090909;
+  --bg-2:         #0f0f0f;
+  --bg-3:         #141414;
+  --surface:      rgba(255,255,255,0.04);
+  --surface-hover:rgba(255,255,255,0.07);
+  --border:       rgba(255,255,255,0.08);
+  --border-hover: rgba(255,255,255,0.15);
+  --text:         #f2f2f2;
+  --text-2:       #a0a0a0;
+  --text-3:       #5a5a5a;
+  --accent:       #0A84FF;
+  --accent-glow:  rgba(10,132,255,0.25);
+  --accent-2:     #FF453A;
+  --gold:         #FFD60A;
+  --radius:       18px;
+  --radius-sm:    10px;
+  --transition:   0.4s cubic-bezier(0.16,1,0.3,1);
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+}
+
+[data-theme="light"] {
+  --bg:           #f8f8f6;
+  --bg-2:         #f0f0ee;
+  --bg-3:         #e8e8e6;
+  --surface:      rgba(0,0,0,0.04);
+  --surface-hover:rgba(0,0,0,0.07);
+  --border:       rgba(0,0,0,0.08);
+  --border-hover: rgba(0,0,0,0.18);
+  --text:         #111111;
+  --text-2:       #555555;
+  --text-3:       #999999;
+  --accent-glow:  rgba(10,132,255,0.15);
+}
+
+/* -------- RESET & BASE -------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  font-size: 16px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--transition), color var(--transition);
+}
+
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* -------- SCROLLBAR -------- */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--text-3); border-radius: 2px; }
+
+/* -------- CONTAINER -------- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 22px; }
+}
+
+/* ================================================
+   NAVIGATION
+   ================================================ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 40px;
+  transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
+  border-bottom: 1px solid transparent;
+}
+
+.nav.scrolled {
+  background: rgba(9,9,9,0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-color: var(--border);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+}
+
+[data-theme="light"] .nav.scrolled {
+  background: rgba(248,248,246,0.85);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  height: 68px;
+  gap: 48px;
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  margin-right: auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+}
+
+.nav-links a {
+  font-size: 0.87rem;
+  font-weight: 400;
+  color: var(--text-2);
+  letter-spacing: 0.02em;
+  transition: color 0.25s;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 1px;
+  background: var(--accent);
+  transition: width 0.3s var(--transition);
+}
+
+.nav-links a:hover,
+.nav-links a.active { color: var(--text); }
+.nav-links a:hover::after,
+.nav-links a.active::after { width: 100%; }
+
+/* Theme toggle */
+.theme-toggle {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: var(--text-2);
+  font-size: 0.9rem;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-hover);
+  transform: rotate(20deg);
+}
+
+/* Burger */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav-burger span {
+  display: block;
+  width: 24px; height: 1.5px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Mobile nav */
+.nav-mobile {
+  display: none;
+  flex-direction: column;
+  background: rgba(9,9,9,0.97);
+  backdrop-filter: blur(20px);
+  padding: 24px;
+  gap: 4px;
+}
+
+[data-theme="light"] .nav-mobile { background: rgba(248,248,246,0.97); }
+
+.nav-mobile a {
+  padding: 12px 0;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--text-2);
+  border-bottom: 1px solid var(--border);
+  transition: color 0.2s;
+}
+
+.nav-mobile a:hover { color: var(--text); }
+
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+  .nav { padding: 0 22px; }
+}
+
+/* ================================================
+   HERO
+   ================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Background grid */
+.hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+
+[data-theme="light"] .hero-grid {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+}
+
+.hero-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.35;
+}
+
+.hero-glow-1 {
+  width: 700px; height: 500px;
+  top: -100px; right: -100px;
+  background: radial-gradient(circle, rgba(10,132,255,0.4) 0%, transparent 70%);
+  animation: glow-pulse 8s ease-in-out infinite alternate;
+}
+
+.hero-glow-2 {
+  width: 500px; height: 400px;
+  bottom: 0; left: -80px;
+  background: radial-gradient(circle, rgba(255,69,58,0.2) 0%, transparent 70%);
+  animation: glow-pulse 12s ease-in-out 2s infinite alternate;
+}
+
+@keyframes glow-pulse {
+  from { transform: scale(1) translate(0,0); }
+  to   { transform: scale(1.15) translate(30px, 20px); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 120px 24px 100px;
+  max-width: 900px;
+}
+
+/* Hero reveal animations */
+.reveal-hero {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroReveal 0.9s var(--transition) forwards;
+  animation-delay: calc(var(--d) * 0.15s);
+}
+
+@keyframes heroReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Badge */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 8px 18px;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--text-2);
+  letter-spacing: 0.04em;
+  margin-bottom: 32px;
+  backdrop-filter: blur(12px);
+}
+
+.badge-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/* Name */
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 9vw, 8.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.hero-name span:first-child { color: var(--text); }
+.hero-name-accent {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255,255,255,0.25);
+}
+
+[data-theme="light"] .hero-name-accent {
+  -webkit-text-stroke: 1.5px rgba(0,0,0,0.2);
+}
+
+/* Title */
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--text-2);
+  max-width: 480px;
+  margin: 0 auto 44px;
+  font-weight: 300;
+}
+
+/* CTA buttons */
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: 100px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  box-shadow: 0 0 0 0 var(--accent-glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px var(--accent-glow);
+  background: #1a8fff;
+}
+
+.btn-ghost {
+  background: var(--surface);
+  color: var(--text);
+  padding: 14px 32px;
+  border-radius: 100px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+}
+
+.btn-ghost:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-3);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: scroll-bounce 2s ease-in-out infinite;
+  z-index: 1;
+}
+
+.scroll-line {
+  display: block;
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, transparent, var(--text-3));
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ================================================
+   SECTIONS — SHARED
+   ================================================ */
+.section {
+  padding: 140px 0;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin-bottom: 72px;
+  color: var(--text);
+}
+
+.section-heading em {
+  font-style: normal;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255,255,255,0.22);
+}
+
+[data-theme="light"] .section-heading em {
+  -webkit-text-stroke: 1.5px rgba(0,0,0,0.18);
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================================================
+   ABOUT
+   ================================================ */
+.about-section { background: var(--bg-2); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 440px 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.about-photo-wrap {
+  position: relative;
+}
+
+.about-photo-placeholder {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-3);
+}
+
+.photo-frame {
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--radius) + 2px);
+  border: 1px solid var(--border);
+  pointer-events: none;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 18px 14px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+}
+
+.stat-card:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+}
+
+.stat-num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  color: var(--text-3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.about-text h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  margin-bottom: 28px;
+  color: var(--text);
+}
+
+.about-text h2 em { font-style: italic; color: var(--accent); }
+
+.about-text p {
+  color: var(--text-2);
+  font-size: 1rem;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 32px;
+}
+
+.tag {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-size: 0.8rem;
+  color: var(--text-2);
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+
+.tag:hover {
+  background: var(--surface-hover);
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+@media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .about-photo-placeholder { max-width: 360px; }
+  .about-stats { max-width: 360px; }
+}
+
+/* ================================================
+   PROJECTS
+   ================================================ */
+.projects-section { background: var(--bg); }
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  cursor: pointer;
+  will-change: transform;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-hover);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 0 0 1px var(--border-hover);
+}
+
+.project-card--large {
+  grid-column: 1 / -1;
+}
+
+.project-img {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  background: var(--bg-3);
+}
+
+.project-card--large .project-img { aspect-ratio: 21/9; }
+
+@media (max-width: 768px) {
+  .project-card--large .project-img { aspect-ratio: 16/9; }
+}
+
+.project-img img {
+  transition: transform 0.9s var(--transition);
+}
+
+.project-card:hover .project-img img {
+  transform: scale(1.04);
+}
+
+.project-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.6));
+}
+
+.project-info {
+  padding: 28px 30px 30px;
+}
+
+.project-meta {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.project-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(10,132,255,0.1);
+  border-radius: 100px;
+  padding: 3px 10px;
+  border: 1px solid rgba(10,132,255,0.2);
+}
+
+.project-info h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text);
+  letter-spacing: -0.015em;
+}
+
+.project-card--large .project-info h3 { font-size: 1.6rem; }
+
+.project-info p {
+  font-size: 0.92rem;
+  color: var(--text-2);
+  line-height: 1.65;
+  margin-bottom: 18px;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  transition: gap 0.25s, opacity 0.25s;
+  gap: 4px;
+}
+
+.project-link:hover { opacity: 0.75; gap: 8px; }
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  .project-card--large { grid-column: auto; }
+}
+
+/* ================================================
+   EXPERIENCE
+   ================================================ */
+.experience-section { background: var(--bg-2); }
+
+.timeline {
+  position: relative;
+  max-width: 780px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 6px;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent), var(--border), transparent);
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 52px;
+  margin-bottom: 60px;
+}
+
+.timeline-item:last-child { margin-bottom: 0; }
+
+.timeline-dot {
+  position: absolute;
+  left: 4px; top: 6px;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.timeline-item:hover .timeline-dot {
+  background: var(--accent);
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.timeline-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+}
+
+.timeline-item:hover .timeline-card {
+  background: var(--surface-hover);
+  border-color: var(--border-hover);
+  transform: translateX(4px);
+}
+
+.timeline-date {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.timeline-role {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.timeline-company {
+  font-size: 0.85rem;
+  color: var(--text-3);
+  margin-bottom: 14px;
+  font-weight: 400;
+}
+
+.timeline-card p {
+  font-size: 0.92rem;
+  color: var(--text-2);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+/* ================================================
+   SKILLS
+   ================================================ */
+.skills-section { background: var(--bg); }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.skill-group {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.skill-group:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-hover);
+}
+
+.skill-group-icon {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-family: var(--font-display);
+}
+
+.skill-group h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 28px;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.skill-group ul {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skill-group li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.skill-group li > span:first-child {
+  font-size: 0.88rem;
+  color: var(--text-2);
+  white-space: nowrap;
+  min-width: 130px;
+}
+
+.skill-bar {
+  flex: 1;
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.skill-bar span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), #5ac8fa);
+  border-radius: 2px;
+  transition: width 1.2s cubic-bezier(0.16,1,0.3,1);
+}
+
+/* When revealed, animate to the set percentage */
+.reveal.is-visible .skill-bar span {
+  width: calc(var(--p) * 1%);
+}
+
+@media (max-width: 768px) {
+  .skills-grid { grid-template-columns: 1fr; }
+}
+
+/* ================================================
+   ACHIEVEMENTS
+   ================================================ */
+.achievements-section { background: var(--bg-2); }
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.achievement-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  text-align: center;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), background var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.achievement-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), #5ac8fa);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+
+.achievement-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-hover);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+  background: var(--surface-hover);
+}
+
+.achievement-card:hover::before { transform: scaleX(1); }
+
+.achievement-icon {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.achievement-rank {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.achievement-card h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.achievement-card p {
+  font-size: 0.85rem;
+  color: var(--text-2);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.achievement-year {
+  font-size: 0.72rem;
+  color: var(--text-3);
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .achievements-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 540px) {
+  .achievements-grid { grid-template-columns: 1fr; }
+}
+
+/* ================================================
+   CONTACT
+   ================================================ */
+.contact-section { background: var(--bg); }
+
+.contact-sub {
+  font-size: 1.05rem;
+  color: var(--text-2);
+  max-width: 520px;
+  margin-bottom: 52px;
+  font-weight: 300;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 640px;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 26px;
+  transition: transform var(--transition), border-color var(--transition), background var(--transition), box-shadow var(--transition);
+}
+
+.contact-card:hover {
+  transform: translateX(6px);
+  border-color: var(--accent);
+  background: var(--surface-hover);
+  box-shadow: 0 8px 32px rgba(10,132,255,0.1);
+}
+
+.contact-card-icon {
+  width: 44px; height: 44px;
+  border-radius: var(--radius-sm);
+  background: rgba(10,132,255,0.1);
+  border: 1px solid rgba(10,132,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: var(--font-display);
+  flex-shrink: 0;
+}
+
+.contact-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.contact-card-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.contact-card-value {
+  font-size: 0.95rem;
+  color: var(--text);
+  font-weight: 400;
+}
+
+.contact-card-arrow {
+  color: var(--text-3);
+  font-size: 1.1rem;
+  transition: color 0.25s, transform 0.3s;
+}
+
+.contact-card:hover .contact-card-arrow {
+  color: var(--accent);
+  transform: translateX(4px);
+}
+
+/* ================================================
+   FOOTER
+   ================================================ */
+.footer {
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+  padding: 32px 0;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--text);
+  letter-spacing: 0.06em;
+}
+
+.footer-copy {
+  font-size: 0.82rem;
+  color: var(--text-3);
+  flex: 1;
+  text-align: center;
+}
+
+.footer-top {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-2);
+  font-size: 1rem;
+  transition: background 0.25s, border-color 0.25s, transform 0.3s;
+}
+
+.footer-top:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+}
+
+/* ================================================
+   RESPONSIVE — MISC
+   ================================================ */
+@media (max-width: 768px) {
+  .section { padding: 100px 0; }
+  .section-heading { margin-bottom: 48px; }
+
+  .hero-name {
+    gap: 4px;
+  }
+  .hero-sub { font-size: 1rem; }
+
+  .contact-card-value { font-size: 0.85rem; }
+}
+
+@media (max-width: 480px) {
+  .hero-badge { font-size: 0.74rem; padding: 7px 14px; }
+  .hero-cta { flex-direction: column; align-items: center; }
+  .btn-primary, .btn-ghost { width: 100%; text-align: center; max-width: 260px; }
+}
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sarthak Patange — Motorsport Engineer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ======== NAVIGATION ======== -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#hero">SP</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="theme-icon">☀</span>
+      </button>
+      <button class="nav-burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ======== HERO ======== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-glow hero-glow-1"></div>
+      <div class="hero-glow hero-glow-2"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge reveal-hero" style="--d:0">
+        <span class="badge-dot"></span>
+        SAE Baja Captain · Class of 2025
+      </div>
+      <h1 class="hero-name reveal-hero" style="--d:1">
+        <span>Sarthak</span>
+        <span class="hero-name-accent">Patange</span>
+      </h1>
+      <p class="hero-title reveal-hero" style="--d:2">
+        Motorsport Engineer &amp; Vehicle Dynamics Engineer
+      </p>
+      <p class="hero-sub reveal-hero" style="--d:3">
+        Engineering precision into every corner, every lap, every milestone.
+      </p>
+      <div class="hero-cta reveal-hero" style="--d:4">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+    <a href="#about" class="scroll-indicator" aria-label="Scroll down">
+      <span class="scroll-line"></span>
+      <span class="scroll-label">Scroll</span>
+    </a>
+  </section>
+
+  <!-- ======== ABOUT ======== -->
+  <section class="section about-section" id="about">
+    <div class="container">
+      <div class="section-label reveal">About</div>
+      <div class="about-grid">
+        <div class="about-photo-wrap reveal">
+          <!-- Replace src with your actual photo -->
+          <div class="about-photo-placeholder">
+            <img src="https://placehold.co/520x620/111/222?text=Photo" alt="Sarthak Patange" />
+            <div class="photo-frame"></div>
+          </div>
+          <div class="about-stats">
+            <div class="stat-card reveal">
+              <span class="stat-num">4+</span>
+              <span class="stat-label">Years Engineering</span>
+            </div>
+            <div class="stat-card reveal">
+              <span class="stat-num">12+</span>
+              <span class="stat-label">Projects Led</span>
+            </div>
+            <div class="stat-card reveal">
+              <span class="stat-num">3×</span>
+              <span class="stat-label">Competition Wins</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-text reveal">
+          <h2 class="section-heading">Engineered for<br /><em>the edge</em> of performance.</h2>
+          <p>I'm a Mechanical and Motorsport Engineer with a deep focus on vehicle dynamics, suspension design, and systems integration. As SAE Baja Captain, I led a multidisciplinary team to design, build, and race an off-road vehicle from the ground up.</p>
+          <p>My work sits at the intersection of classical mechanical engineering and cutting-edge simulation — from finite element analysis to lap-time simulation, I approach every problem with data-driven precision and a driver's intuition.</p>
+          <p>Currently seeking roles where engineering meets speed.</p>
+          <div class="about-tags">
+            <span class="tag">Vehicle Dynamics</span>
+            <span class="tag">Suspension Design</span>
+            <span class="tag">FEA</span>
+            <span class="tag">CAD</span>
+            <span class="tag">Motorsport Engineering</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== PROJECTS ======== -->
+  <section class="section projects-section" id="projects">
+    <div class="container">
+      <div class="section-label reveal">Projects</div>
+      <h2 class="section-heading reveal">Selected<br /><em>Work</em></h2>
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <article class="project-card project-card--large reveal">
+          <!-- Replace with your actual project image -->
+          <div class="project-img">
+            <img src="https://placehold.co/900x520/0a0a0a/1a1a1a?text=SAE+Baja+2024" alt="SAE Baja Vehicle" />
+            <div class="project-overlay"></div>
+          </div>
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-tag">Motorsport</span>
+              <span class="project-tag">Leadership</span>
+            </div>
+            <h3>SAE Baja 2024 — Full Vehicle Design</h3>
+            <p>Led a 30-person team to engineer a competition off-road vehicle from concept to podium. Oversaw chassis, suspension, drivetrain, and homologation.</p>
+            <a href="#" class="project-link" aria-label="View project">View Project →</a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card reveal">
+          <div class="project-img">
+            <img src="https://placehold.co/600x380/0a0a0a/1a1a1a?text=Suspension+System" alt="Suspension Design" />
+            <div class="project-overlay"></div>
+          </div>
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-tag">Design</span>
+              <span class="project-tag">FEA</span>
+            </div>
+            <h3>Double-Wishbone Suspension Design</h3>
+            <p>Optimised suspension geometry for maximum cornering performance. Finite element validated to 8G impact loads.</p>
+            <a href="#" class="project-link" aria-label="View project">View Project →</a>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card reveal">
+          <div class="project-img">
+            <img src="https://placehold.co/600x380/0a0a0a/1a1a1a?text=Lap+Time+Simulation" alt="Lap Sim" />
+            <div class="project-overlay"></div>
+          </div>
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-tag">Simulation</span>
+              <span class="project-tag">Python</span>
+            </div>
+            <h3>Lap-Time Simulation Tool</h3>
+            <p>Built a MATLAB/Python lap-time simulation from scratch. Used to optimise gear ratios and aerodynamic configurations.</p>
+            <a href="#" class="project-link" aria-label="View project">View Project →</a>
+          </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="project-card reveal">
+          <div class="project-img">
+            <img src="https://placehold.co/600x380/0a0a0a/1a1a1a?text=Steering+System" alt="Steering System" />
+            <div class="project-overlay"></div>
+          </div>
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-tag">Steering</span>
+              <span class="project-tag">Dynamics</span>
+            </div>
+            <h3>Rack-and-Pinion Steering Optimisation</h3>
+            <p>Redesigned the steering geometry to reduce bump steer and improve on-center feel, yielding a 15% gain in driver feedback score.</p>
+            <a href="#" class="project-link" aria-label="View project">View Project →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== EXPERIENCE ======== -->
+  <section class="section experience-section" id="experience">
+    <div class="container">
+      <div class="section-label reveal">Experience</div>
+      <h2 class="section-heading reveal">Career<br /><em>Timeline</em></h2>
+      <div class="timeline">
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-date">2023 — 2024</div>
+            <h3 class="timeline-role">SAE Baja Captain</h3>
+            <div class="timeline-company">University SAE Team</div>
+            <p>Led the full design and manufacturing lifecycle of a Baja competition vehicle. Managed budget, manufacturing schedule, and cross-functional sub-teams.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-date">2022 — 2023</div>
+            <h3 class="timeline-role">Suspension & Steering Lead</h3>
+            <div class="timeline-company">University SAE Team</div>
+            <p>Designed and validated the complete front and rear suspension package. Implemented a new anti-roll bar concept that improved lateral stability by 22%.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-date">Summer 2022</div>
+            <h3 class="timeline-role">Vehicle Dynamics Engineering Intern</h3>
+            <div class="timeline-company">Automotive OEM (Placeholder)</div>
+            <p>Assisted the vehicle dynamics team with simulation setup and data acquisition processing. Prepared correlation reports between ADAMS model and physical test data.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-date">2021 — 2022</div>
+            <h3 class="timeline-role">Chassis Sub-Team Member</h3>
+            <div class="timeline-company">University SAE Team</div>
+            <p>Contributed to chassis FEA and weld inspection processes. Gained hands-on TIG welding and CMM measurement experience.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== SKILLS ======== -->
+  <section class="section skills-section" id="skills">
+    <div class="container">
+      <div class="section-label reveal">Skills</div>
+      <h2 class="section-heading reveal">Technical<br /><em>Arsenal</em></h2>
+      <div class="skills-grid">
+
+        <div class="skill-group reveal">
+          <div class="skill-group-icon">⬡</div>
+          <h3>Vehicle Dynamics</h3>
+          <ul>
+            <li><span>Suspension Kinematics</span><span class="skill-bar"><span style="--p:92"></span></span></li>
+            <li><span>Tyre Modelling</span><span class="skill-bar"><span style="--p:80"></span></span></li>
+            <li><span>Lap Time Simulation</span><span class="skill-bar"><span style="--p:75"></span></span></li>
+            <li><span>ADAMS / CarSim</span><span class="skill-bar"><span style="--p:70"></span></span></li>
+          </ul>
+        </div>
+
+        <div class="skill-group reveal">
+          <div class="skill-group-icon">◈</div>
+          <h3>CAD & Simulation</h3>
+          <ul>
+            <li><span>SolidWorks</span><span class="skill-bar"><span style="--p:95"></span></span></li>
+            <li><span>CATIA V5</span><span class="skill-bar"><span style="--p:78"></span></span></li>
+            <li><span>Ansys FEA</span><span class="skill-bar"><span style="--p:82"></span></span></li>
+            <li><span>GD&T</span><span class="skill-bar"><span style="--p:88"></span></span></li>
+          </ul>
+        </div>
+
+        <div class="skill-group reveal">
+          <div class="skill-group-icon">⟨/⟩</div>
+          <h3>Programming</h3>
+          <ul>
+            <li><span>MATLAB</span><span class="skill-bar"><span style="--p:85"></span></span></li>
+            <li><span>Python</span><span class="skill-bar"><span style="--p:78"></span></span></li>
+            <li><span>C++</span><span class="skill-bar"><span style="--p:60"></span></span></li>
+            <li><span>Excel VBA</span><span class="skill-bar"><span style="--p:72"></span></span></li>
+          </ul>
+        </div>
+
+        <div class="skill-group reveal">
+          <div class="skill-group-icon">⊕</div>
+          <h3>Engineering Tools</h3>
+          <ul>
+            <li><span>MathCAD</span><span class="skill-bar"><span style="--p:80"></span></span></li>
+            <li><span>Data Acquisition</span><span class="skill-bar"><span style="--p:75"></span></span></li>
+            <li><span>Project Management</span><span class="skill-bar"><span style="--p:90"></span></span></li>
+            <li><span>Technical Writing</span><span class="skill-bar"><span style="--p:85"></span></span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== ACHIEVEMENTS ======== -->
+  <section class="section achievements-section" id="achievements">
+    <div class="container">
+      <div class="section-label reveal">Achievements</div>
+      <h2 class="section-heading reveal">Honours &amp;<br /><em>Recognition</em></h2>
+      <div class="achievements-grid">
+
+        <div class="achievement-card reveal">
+          <div class="achievement-icon">🏆</div>
+          <div class="achievement-rank">1st Place</div>
+          <h3>SAE Baja Suspension Design</h3>
+          <p>Awarded best suspension design at regional competition for optimised geometry and weight reduction.</p>
+          <div class="achievement-year">2024</div>
+        </div>
+
+        <div class="achievement-card reveal">
+          <div class="achievement-icon">🥇</div>
+          <div class="achievement-rank">Top 10%</div>
+          <h3>National Overall Standing</h3>
+          <p>Ranked in the top 10% out of 112 competing teams at the national SAE Baja event.</p>
+          <div class="achievement-year">2024</div>
+        </div>
+
+        <div class="achievement-card reveal">
+          <div class="achievement-icon">⚙️</div>
+          <div class="achievement-rank">Award</div>
+          <h3>Best Engineering Design Report</h3>
+          <p>Recognised for technical clarity and depth in the vehicle design documentation submitted to judges.</p>
+          <div class="achievement-year">2023</div>
+        </div>
+
+        <div class="achievement-card reveal">
+          <div class="achievement-icon">🎓</div>
+          <div class="achievement-rank">Academic</div>
+          <h3>Dean's Merit List</h3>
+          <p>Consistently maintained GPA placing in the top 5% of the Mechanical Engineering cohort.</p>
+          <div class="achievement-year">2021–2024</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== CONTACT ======== -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="section-label reveal">Contact</div>
+      <h2 class="section-heading reveal">Let's build<br /><em>something fast.</em></h2>
+      <p class="contact-sub reveal">Open to full-time roles, internships, and project collaborations in motorsport and automotive engineering.</p>
+      <div class="contact-links reveal">
+        <a href="mailto:sarthak@example.com" class="contact-card">
+          <div class="contact-card-icon">✉</div>
+          <div class="contact-card-info">
+            <span class="contact-card-label">Email</span>
+            <span class="contact-card-value">sarthak@example.com</span>
+          </div>
+          <span class="contact-card-arrow">→</span>
+        </a>
+        <!-- Replace # with actual LinkedIn URL -->
+        <a href="https://linkedin.com/" target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-card-icon">in</div>
+          <div class="contact-card-info">
+            <span class="contact-card-label">LinkedIn</span>
+            <span class="contact-card-value">linkedin.com/in/sarthakpatange</span>
+          </div>
+          <span class="contact-card-arrow">→</span>
+        </a>
+        <!-- Replace # with actual GitHub URL -->
+        <a href="https://github.com/" target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-card-icon">◎</div>
+          <div class="contact-card-info">
+            <span class="contact-card-label">GitHub</span>
+            <span class="contact-card-value">github.com/sarthakpatange</span>
+          </div>
+          <span class="contact-card-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-logo">SP</span>
+      <span class="footer-copy">© 2024 Sarthak Patange. Engineered with precision.</span>
+      <a href="#hero" class="footer-top" aria-label="Back to top">↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+/* ================================================
+   SARTHAK PATANGE — PORTFOLIO SCRIPTS
+   Premium Motorsport Engineering Portfolio
+   ================================================ */
+
+'use strict';
+
+/* -------- HELPERS -------- */
+const $ = (sel, ctx = document) => ctx.querySelector(sel);
+const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
+/* ================================================
+   NAV — scroll behaviour + mobile menu
+   ================================================ */
+(function initNav() {
+  const nav       = $('#nav');
+  const burger    = $('#navBurger');
+  const mobileNav = $('#navMobile');
+  const links     = $$('.nav-links a, .nav-mobile a');
+  let mobileOpen  = false;
+
+  /* Transparent → solid on scroll */
+  const onScroll = () => {
+    if (window.scrollY > 40) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+    highlightActive();
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* Mobile burger toggle */
+  burger.addEventListener('click', () => {
+    mobileOpen = !mobileOpen;
+    mobileNav.style.display = mobileOpen ? 'flex' : '';
+    const spans = $$('span', burger);
+    if (mobileOpen) {
+      spans[0].style.transform = 'translateY(6.5px) rotate(45deg)';
+      spans[1].style.opacity   = '0';
+      spans[2].style.transform = 'translateY(-6.5px) rotate(-45deg)';
+    } else {
+      spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    }
+  });
+
+  /* Close mobile nav on link click */
+  $$('.nav-mobile a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileOpen = false;
+      mobileNav.style.display = '';
+      $$('span', burger).forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    });
+  });
+
+  /* Highlight active nav link */
+  const sections = $$('section[id]');
+
+  function highlightActive() {
+    const scrollY = window.scrollY + 120;
+    sections.forEach(section => {
+      const top    = section.offsetTop;
+      const height = section.offsetHeight;
+      const id     = section.getAttribute('id');
+      const link   = $$(`.nav-links a[href="#${id}"]`);
+      if (scrollY >= top && scrollY < top + height) {
+        links.forEach(l => l.classList.remove('active'));
+        link.forEach(l => l.classList.add('active'));
+      }
+    });
+  }
+})();
+
+
+/* ================================================
+   SMOOTH SCROLL — all anchor links
+   ================================================ */
+document.addEventListener('click', e => {
+  const target = e.target.closest('a[href^="#"]');
+  if (!target) return;
+  const id = target.getAttribute('href');
+  if (id === '#') return;
+  const el = $(id);
+  if (!el) return;
+  e.preventDefault();
+  el.scrollIntoView({ behavior: 'smooth' });
+});
+
+
+/* ================================================
+   INTERSECTION OBSERVER — reveal on scroll
+   ================================================ */
+(function initReveal() {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          /* Stagger children within same parent slightly */
+          const siblings = $$('.reveal', entry.target.parentElement);
+          const idx = siblings.indexOf(entry.target);
+          entry.target.style.transitionDelay = `${idx * 0.06}s`;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.12,
+      rootMargin: '0px 0px -60px 0px'
+    }
+  );
+
+  $$('.reveal').forEach(el => observer.observe(el));
+})();
+
+
+/* ================================================
+   THEME TOGGLE — dark / light
+   ================================================ */
+(function initTheme() {
+  const btn  = $('#themeToggle');
+  const icon = btn.querySelector('.theme-icon');
+  const root = document.documentElement;
+
+  /* Persist preference */
+  const saved = localStorage.getItem('sp-theme') || 'dark';
+  root.setAttribute('data-theme', saved);
+  icon.textContent = saved === 'dark' ? '☀' : '☽';
+
+  btn.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme');
+    const next    = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    icon.textContent = next === 'dark' ? '☀' : '☽';
+    localStorage.setItem('sp-theme', next);
+  });
+})();
+
+
+/* ================================================
+   SKILL BARS — animate on reveal
+   The CSS handles the animation via .is-visible,
+   but we also hook into the observer to ensure
+   the bars animate after the card becomes visible.
+   ================================================ */
+(function initSkillBars() {
+  /* Skill bars are inside .skill-group which is .reveal
+     The CSS transition fires automatically via .is-visible class.
+     Nothing extra needed — but we can enhance with a small delay. */
+})();
+
+
+/* ================================================
+   PROJECT CARDS — subtle tilt on mouse move
+   ================================================ */
+(function initTilt() {
+  $$('.project-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect   = card.getBoundingClientRect();
+      const cx     = rect.left + rect.width / 2;
+      const cy     = rect.top  + rect.height / 2;
+      const dx     = (e.clientX - cx) / (rect.width / 2);
+      const dy     = (e.clientY - cy) / (rect.height / 2);
+      const rotX   = -dy * 3;
+      const rotY   =  dx * 3;
+      card.style.transform = `translateY(-6px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+      card.style.transition = 'transform 0.1s ease';
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.transition = '';
+    });
+  });
+})();
+
+
+/* ================================================
+   PARALLAX — hero glows follow scroll gently
+   ================================================ */
+(function initParallax() {
+  const glow1 = $('.hero-glow-1');
+  const glow2 = $('.hero-glow-2');
+  if (!glow1 || !glow2) return;
+
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      glow1.style.transform = `translateY(${y * 0.15}px)`;
+      glow2.style.transform = `translateY(${y * -0.1}px)`;
+      ticking = false;
+    });
+    ticking = true;
+  }, { passive: true });
+})();
+
+
+/* ================================================
+   ACHIEVEMENT CARDS — counter animation
+   ================================================ */
+(function initCounters() {
+  /* Animate stat numbers when they enter viewport */
+  const statNums = $$('.stat-num');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el  = entry.target;
+      const raw = el.textContent.trim();
+
+      /* Extract number and suffix */
+      const match = raw.match(/^([\d.]+)(.*)/);
+      if (!match) return;
+
+      const end    = parseFloat(match[1]);
+      const suffix = match[2];
+      const dur    = 1200;
+      const start  = performance.now();
+
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / dur, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const val = end <= 10 ? (ease * end).toFixed(0) : Math.round(ease * end);
+        el.textContent = `${val}${suffix}`;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+      observer.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+
+  statNums.forEach(el => observer.observe(el));
+})();
+
+
+/* ================================================
+   HERO GRID — mouse parallax (subtle)
+   ================================================ */
+(function initHeroMouseParallax() {
+  const grid = $('.hero-grid');
+  if (!grid) return;
+
+  document.addEventListener('mousemove', e => {
+    const x = (e.clientX / window.innerWidth  - 0.5) * 20;
+    const y = (e.clientY / window.innerHeight - 0.5) * 20;
+    grid.style.transform = `translate(${x}px, ${y}px)`;
+  }, { passive: true });
+})();
+
+
+/* ================================================
+   CURSOR GLOW — optional subtle accent glow
+   that follows the cursor on desktop
+   ================================================ */
+(function initCursorGlow() {
+  if (window.matchMedia('(pointer: coarse)').matches) return; /* Skip mobile */
+
+  const glow = document.createElement('div');
+  glow.style.cssText = `
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(10,132,255,0.06) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s;
+    top: 0; left: 0;
+  `;
+  document.body.appendChild(glow);
+
+  let mx = 0, my = 0;
+  let cx = 0, cy = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX;
+    my = e.clientY;
+  }, { passive: true });
+
+  function loop() {
+    cx += (mx - cx) * 0.12;
+    cy += (my - cy) * 0.12;
+    glow.style.left = `${cx}px`;
+    glow.style.top  = `${cy}px`;
+    requestAnimationFrame(loop);
+  }
+
+  loop();
+
+  document.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
+  document.addEventListener('mouseenter', () => { glow.style.opacity = '1'; });
+})();
